@@ -1,66 +1,92 @@
-# 🐍 Python Bytecode Interpreter
+🐍 Python Virtual Machine Interpreter
 
-A minimal Python bytecode interpreter written in Python, inspired by [Byterun](https://github.com/nedbat/byterun). This project explores how Python executes code under the hood and supports core features like:
+This project implements a simplified stack-based virtual machine (VM) for executing Python bytecode instructions.
+It is inspired by Python's internal ceval.c execution loop and serves as an educational model of how Python code runs.
 
-- Conditional statements (`if/else`)
-- Loops (`while`, `for`)
-- Exception handling (`try/except`)
-- Function calls and return values
+🚀 Features
 
-## 📂 Project Structure
+Instruction Dispatch using Python's dis module
 
-```
-├── byterun_interpreter.py   # Main interpreter logic
-├── test_cases.py            # Unit tests using Python's unittest framework
-└── README.md                # Project documentation
-```
+Frame and Stack Management (just like CPython)
 
-## 🚀 Getting Started
+Support for control flow: if, while, for
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/your-username/python-bytecode-interpreter.git
-cd python-bytecode-interpreter
-```
+Function calls, local and global variable access
 
-### 2. Run Unit Tests
-```bash
+Arithmetic and comparison operations
+
+Debug Mode with detailed stack and opcode trace
+
+📂 Project Structure
+
+python-interpreter/
+├── byterun_interpreter.py  # Core VM logic
+├── test_cases.py           # Unit tests and example Python functions
+├── README.md               # This file
+
+🧠 Concepts Implemented
+
+Stack-based evaluation
+
+Instruction decoding via dis.get_instructions()
+
+Instruction pointer (manual jumps)
+
+Opcode to function dispatch mapping
+
+Frame stack and variable resolution
+
+✅ Sample Supported Opcodes
+
+LOAD_CONST, LOAD_FAST, STORE_FAST
+
+LOAD_GLOBAL, CALL_FUNCTION
+
+COMPARE_OP, POP_JUMP_IF_FALSE, JUMP_ABSOLUTE
+
+GET_ITER, FOR_ITER, INPLACE_ADD
+
+RETURN_VALUE, BINARY_ADD, BINARY_TRUE_DIVIDE
+
+🧪 Running Tests
+
 python test_cases.py
-```
 
-> Output should show `OK` if all interpreter features are working correctly.
+This will run a series of Python functions (e.g., conditionals, loops) through the VM and compare outputs with native execution.
 
-## ✅ Features Implemented
+⚙️ Debug Mode Output
 
-- [x] LOAD/STORE operations
-- [x] Arithmetic and logic execution
-- [x] Conditional branching (`POP_JUMP_IF_FALSE`, etc.)
-- [x] Loop control (`FOR_ITER`, `JUMP_ABSOLUTE`, etc.)
-- [x] Exception stack handling (`SETUP_EXCEPT`, `RAISE_VARARGS`)
-- [x] Basic function calling (`CALL_FUNCTION`)
-- [x] List creation and iteration
+Enabling self.debug = True in the VirtualMachine class shows:
 
-## 🎯 Why This Project?
+Current instruction and argument
 
-This interpreter is an educational tool to help you understand:
-- How Python executes bytecode
-- Stack-based virtual machines
-- Control flow mechanics behind Python’s syntax
+Stack before and after each opcode
 
-## 🧪 Test Coverage
+Loop jumps and instruction flow
 
-Each of the following Python constructs is covered in `test_cases.py`:
+📜 License
 
-- Conditional expressions
-- `while` and `for` loops
-- Exception handling
-- Return value correctness
+MIT License. See LICENSE file.
 
-## 📚 Inspired By
+🧱 Author
 
-- Allison Kaptur's chapter in [500 Lines or Less](https://github.com/aosabook/500lines)
-- [Byterun](https://github.com/nedbat/byterun)
+Dharshini Vasudevan
 
-## 📝 License
+🤝 Contributions
 
-This project is open-source and available under the MIT License.
+PRs are welcome to:
+
+Add more opcode support (e.g., with, try, class)
+
+Improve exception handling
+
+Add logging or visual stack trace UI
+
+📎 References
+
+cpython/ceval.c
+
+500 Lines or Less: A Simple Object Model
+
+dis — Python Bytecode Disassembler
+
